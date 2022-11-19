@@ -1,7 +1,6 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { GamesService } from '../../services/games.service';
-import { Game } from '../../models/Game';
-
+ 
 @Component({
   selector: 'app-game-list',
   templateUrl: './game-list.component.html',
@@ -16,12 +15,28 @@ export class GameListComponent implements OnInit {
   constructor(private gameService: GamesService) { }
 
   ngOnInit(): void {
-    this.gameService.getGames().subscribe(
-      res => {
-        this.games = res;
-      },
-      err => console.log(err) 
-    )
+    this.getGames();
   }
 
+  getGames() {
+    this.gameService.getGames()
+      .subscribe(
+        res => {
+          this.games = res;
+        },
+        err => console.error(err) 
+      )
+  }
+
+  deleteGame(id: string ) {
+    this.gameService.deleteGame(id)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.getGames();
+        },
+        err => console.log(err)         
+      )    
+  }
+  
 }

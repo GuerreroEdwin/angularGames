@@ -1,4 +1,6 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { GamesService } from 'src/app/services/games.service';
 import { Game } from '../../models/Game';
 
@@ -20,7 +22,8 @@ export class GameFormComponent implements OnInit {
   };
 
   constructor(private gameService: GamesService,
-              ) { }
+              private router: Router,
+              private activedRaute: ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -32,6 +35,7 @@ export class GameFormComponent implements OnInit {
       .subscribe(
         res => {
           console.log(res);
+          this.router.navigate(['/games']);
 
          }, 
          err => console.log(err)
