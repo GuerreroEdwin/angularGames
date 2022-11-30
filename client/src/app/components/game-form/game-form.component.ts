@@ -58,7 +58,7 @@ export class GameFormComponent implements OnInit {
 
   updateGame(){
     console.log(this.game);
-    /* delete this.game.create_at;
+    delete this.game.create_at;
     this.gameService.updateGame(this.game.id, this.game)
       .subscribe(
         res => {
@@ -66,6 +66,6 @@ export class GameFormComponent implements OnInit {
           this.router.navigate(['/games']);
         },
         err => console.log(err)
-      ) */
+      )
   }
 }
